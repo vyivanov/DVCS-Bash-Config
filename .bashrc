@@ -37,7 +37,24 @@ esac
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
 force_color_prompt=yes
-git_branch_highlight=yes
+git_highlight=yes
+
+get_git_status() 
+{
+    GIT_BRANCH=`git symbolic-ref HEAD 2> /dev/null | cut -b 12- 2> /dev/null`
+    GIT_DIRTY=`git status --short 2> /dev/null | wc -l 2> /dev/null`
+
+    if [ "$GIT_BRANCH" != "" ]; then
+        echo -n "(git:$GIT_BRANCH"
+
+        if [ "$GIT_DIRTY" != 0 ]; then
+            echo -n "*)"
+        else
+            echo -n ")"
+        fi
+    fi
+}
+
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
@@ -52,13 +69,13 @@ fi
 
 if [ "$color_prompt" = yes ]; then
     PS1='${debian_chroot:+($debian_chroot)}\[\e[0;36m\]\u@\h:\[\e[00m\] \[\e[0;33m\]\w\[\e[00m\] \$ '
-    if [ "$git_branch_highlight" = yes ]; then
-        PS1='${debian_chroot:+($debian_chroot)}\[\e[0;36m\]\u@\h:\[\e[00m\] \[\e[0;33m\]\w\[\e[00m\] \[\e[0;31m\]`~/get-git-branch.sh`\[\e[00m\] \$ '
+    if [ "$git_highlight" = yes ]; then
+        PS1='${debian_chroot:+($debian_chroot)}\[\e[0;36m\]\u@\h:\[\e[00m\] \[\e[0;33m\]\w\[\e[00m\] \[\e[0;31m\]$(get_git_status)\[\e[00m\] \$ '
     fi
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h: \w \$ '
-    if [ "$git_branch_highlight" = yes ]; then
-        PS1='${debian_chroot:+($debian_chroot)}\u@\h: \w `~/get-git-branch.sh` \$ '
+    if [ "$git_highlight" = yes ]; then
+        PS1='${debian_chroot:+($debian_chroot)}\u@\h: \w $(get_git_status) \$ '
     fi
 fi
 unset color_prompt force_color_prompt git_branch_highlight
@@ -108,4 +125,3 @@ fi
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
-
