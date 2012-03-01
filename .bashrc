@@ -55,6 +55,15 @@ get_git_status()
     fi
 }
 
+#get_hg_status()
+# {
+#     HG_COMMIT=`hg parents --template="{node}\n" 2> /dev/null`
+#
+#     if [ "$HG_COMMIT" != "" ]; then
+#        HG_BRANCH=`cat .hg/branch 2> /dev/null`
+#        echo -n "(hg:$HG_BRANCH)"
+#    fi
+# }
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
@@ -78,7 +87,7 @@ else
         PS1='${debian_chroot:+($debian_chroot)}\u@\h: \w $(get_git_status) \$ '
     fi
 fi
-unset color_prompt force_color_prompt git_branch_highlight
+unset color_prompt force_color_prompt git_highlight
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
