@@ -77,16 +77,19 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\e[0;36m\]\u@\h:\[\e[00m\] \[\e[0;33m\]\w\[\e[00m\] \$ '
     if [ "$git_highlight" = yes ]; then
         PS1='${debian_chroot:+($debian_chroot)}\[\e[0;36m\]\u@\h:\[\e[00m\] \[\e[0;33m\]\w\[\e[00m\] \[\e[0;31m\]$(get_git_status)\[\e[00m\] \$ '
+    else
+        PS1='${debian_chroot:+($debian_chroot)}\[\e[0;36m\]\u@\h:\[\e[00m\] \[\e[0;33m\]\w\[\e[00m\] \$ '
     fi
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h: \w \$ '
+else # "$color_prompt = no" or not exist
     if [ "$git_highlight" = yes ]; then
         PS1='${debian_chroot:+($debian_chroot)}\u@\h: \w $(get_git_status) \$ '
+    else
+        PS1='${debian_chroot:+($debian_chroot)}\u@\h: \w \$ '
     fi
 fi
+
 unset color_prompt force_color_prompt git_highlight
 
 # If this is an xterm set the title to user@host:dir

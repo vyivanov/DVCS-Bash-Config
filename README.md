@@ -2,7 +2,7 @@
 
 ### Description
 
-This my config for terminal session file `.bashrc`. Implemented git prompt highlight:
+This my config for terminal session file `~/.bashrc`. Implemented git prompt highlight:
 
 1. Git branch
 2. Git branch dirty 
