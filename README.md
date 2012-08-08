@@ -1,6 +1,6 @@
 ## DVCS-Bash-Config ##
 
-### Description
+### Description ###
 
 This my config for terminal session file `~/.bashrc`. Implemented git prompt highlight:
 
@@ -9,7 +9,7 @@ This my config for terminal session file `~/.bashrc`. Implemented git prompt hig
 
 Looks like this:
 
-![](http://dl.dropbox.com/u/14947871/DVCS-highlight.png)
+![](https://dl.dropbox.com/u/14947871/pics/DVCS-highlight.png)
 
 Implemented and tested on Ubuntu. I've made some changes in `.bashrc` to reach my goal:
 
