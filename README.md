@@ -9,7 +9,7 @@ This my config for terminal session file `~/.bashrc`. Implemented git prompt hig
 
 Looks like this:
 
-![](https://dl.dropbox.com/u/14947871/pics/DVCS-highlight.png)
+![](https://dl.dropbox.com/u/14947871/pics/github/DVCS-highlight.png)
 
 Implemented and tested on Ubuntu. I've made some changes in `.bashrc` to reach my goal:
 
