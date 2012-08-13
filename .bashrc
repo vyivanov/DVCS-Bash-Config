@@ -123,11 +123,15 @@ alias l='ls -CF'
 
 alias launch='gnome-desktop-item-edit ~/Desktop/ --create-new'
 
-alias mntsmb-server='sudo smbmount //192.168.1.15/stuff /mnt/smb/server -o username=voventus,password=samba'
+# SMB share mount/unmount alliases
+alias mntsmb-server='sudo smbmount //192.168.1.15/stuff /mnt/smb/server -o user=voventus'
 alias mntsmb-router='sudo smbmount //192.168.1.1/disk_a1 /mnt/smb/router'
-
 alias umntsmb-server='sudo umount /mnt/smb/server'
 alias umntsmb-router='sudo umount /mnt/smb/router'
+
+# Crypto containers mount/unmount alliases
+alias mntcont-dropbox='encfs /home/voventus/Dropbox/.cont /mnt/mappers/dropbox'
+alias umntcont-dropbox='fusermount -u /mnt/mappers/dropbox'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
